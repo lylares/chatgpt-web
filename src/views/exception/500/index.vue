@@ -25,7 +25,7 @@ function goHome() {
         </div>
       </header>
       <NButton type="primary" @click="goHome">
-        Go to Home
+        回到首页
       </NButton>
     </div>
   </div>
