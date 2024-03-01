@@ -24,9 +24,7 @@ function goHome() {
           <Icon500 class="w-[300px]" />
         </div>
       </header>
-      <NButton type="primary" @click="goHome">
-        回到首页
-      </NButton>
+      
     </div>
   </div>
 </template>
