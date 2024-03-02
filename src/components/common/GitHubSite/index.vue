@@ -13,6 +13,6 @@ const releaseVersion = import.meta.env.VITE_RELEASE_VERSION || 'v0.0.0'
         ihelper
       </span>
     </a>
-    <span v-text="`${releaseVersion}-${gitCommitSha}`" />
+  
   </div>
 </template>
