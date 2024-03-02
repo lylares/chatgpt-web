@@ -10,7 +10,7 @@
     </span>
     <a href="/" target="_blank">
       <span class="text-blue-500">
-        ihelper
+        chatgpt-web
       </span>
     </a>
   
