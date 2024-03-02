@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function goHome() {
-  router.push('/')
+  router.push('/#/chat')
 }
 </script>
 
@@ -24,7 +24,7 @@ function goHome() {
         </div>
       </div>
       <NButton type="primary" @click="goHome">
-        Go to Home
+        回到首页
       </NButton>
     </div>
   </div>
