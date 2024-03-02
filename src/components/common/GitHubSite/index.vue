@@ -8,8 +8,8 @@
     <span class="text-neutral-400">
       Powered by
     </span>
-    <a href="/" target="_blank">
-      <span class="text-blue-500">
+    <a href="/#chat" target="_blank">
+      <span class="text-neutral-400">
         chatgpt-web
       </span>
     </a>
