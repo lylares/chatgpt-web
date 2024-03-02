@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-//import { NButton } from 'naive-ui'
+import { NButton } from 'naive-ui'
 import { useRouter } from 'vue-router'
 import Icon500 from '@/icons/500.vue'
 
@@ -23,6 +23,9 @@ function goHome() {
         <div class="flex items-center justify-center text-center">
           <Icon500 class="w-[300px]" />
         </div>
+				<NButton type="primary" @click="goHome">
+        回到首页
+      </NButton>
       </header>
       
     </div>
