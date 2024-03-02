@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-//import { NButton } from 'naive-ui'
-//import { useRouter } from 'vue-router'
+import { NButton } from 'naive-ui'
+import { useRouter } from 'vue-router'
 import Icon500 from '@/icons/500.vue'
 
-//const router = useRouter()
+const router = useRouter()
 
-//function goHome() {
-  //router.push('/#/chat')
-//}
+function goHome() {
+  router.push('/#/chat')
+}
 </script>
 
 <template>
@@ -23,11 +23,9 @@ import Icon500 from '@/icons/500.vue'
         <div class="flex items-center justify-center text-center">
           <Icon500 class="w-[300px]" />
         </div>
-				<a href="/#/chat" target="_blank">
-      <span class="text-primary-500">
+				<NButton type="primary" @click="goHome">
         回到首页
-      </span>
-    </a>
+      </NButton>
       </header>
       
     </div>
