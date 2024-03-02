@@ -8,7 +8,7 @@
     <span class="text-neutral-400">
       Powered by
     </span>
-    <a href="/#chat" target="_blank">
+    <a href="/#/chat" target="_blank">
       <span class="text-neutral-400">
         chatgpt-web
       </span>
