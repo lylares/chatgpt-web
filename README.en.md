@@ -1,13 +1,18 @@
 # ChatGPT Web
 
-<div style="font-size: 1.5rem;">
-  <a href="./README.md">中文</a> |
-  <a href="./README.en.md">English</a>
-</div>
-</br>
+[中文](./README.md) | [English](./README.en.md)
+
 
 ## Introduction
-> **This project is forked from [Chanzhaoyu/chatgpt-web](https://github.com/Chanzhaoyu/chatgpt-web), some unique features have been added:**
+
+> [!IMPORTANT]
+> **This project is forked from [Chanzhaoyu/chatgpt-web](https://github.com/Chanzhaoyu/chatgpt-web)**
+> 
+> As the original project author does not agree to introduce a dependency on the database, this Hard Fork was created for independent development [discussion for details](https://github.com/Chanzhaoyu/chatgpt-web/pull/589#issuecomment-1469207694)
+> 
+> Thank you again, the great [Chanzhaoyu](https://github.com/Chanzhaoyu), for your contributions to the open-source project 🙏
+
+Some unique features have been added:
 
 [✓] Register & Login & Reset Password & 2FA
 
@@ -25,7 +30,9 @@
 
 [✓] Conversation round limit & setting different limits by user & giftcards
 
-</br>
+
+> [!CAUTION]
+> This project is only published on GitHub, based on the MIT license, free and for open source learning usage. And there will be no any form of account selling, paid service, discussion group, discussion group and other behaviors. Beware of being deceived.
 
 ## Screenshots
 > Disclaimer: This project is only released on GitHub, under the MIT License, free and for open-source learning purposes. There will be no account selling, paid services, discussion groups, or forums. Beware of fraud.
@@ -215,13 +222,16 @@ pnpm dev
 #### Docker Build & Run
 
 ```bash
-docker build -t chatgpt-web .
+GIT_COMMIT_HASH=`git rev-parse HEAD`
+RELEASE_VERSION=`git branch --show-current`
+docker build --build-arg GIT_COMMIT_HASH=${GIT_COMMIT_HASH} --build-arg RELEASE_VERSION=${RELEASE_VERSION} -t chatgpt-web .
 
 # foreground operation
-docker run --name chatgpt-web --rm -it -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
+# If run mongodb in host machine, please use MONGODB_URL=mongodb://host.docker.internal:27017/chatgpt
+docker run --name chatgpt-web --rm -it -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key --env MONGODB_URL=your_mongodb_url chatgpt-web
 
 # background operation
-docker run --name chatgpt-web -d -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
+docker run --name chatgpt-web -d -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key --env MONGODB_URL=your_mongodb_url chatgpt-web
 
 # running address
 http://localhost:3002/
@@ -229,14 +239,14 @@ http://localhost:3002/
 
 #### Docker Compose
 
-[Hub Address](https://hub.docker.com/repository/docker/kerwin1202/chatgpt-web/general)
+[Hub Address](https://hub.docker.com/r/chatgptweb/chatgpt-web)
 
 ```yml
 version: '3'
 
 services:
   app:
-    image: kerwin1202/chatgpt-web # always use latest, pull the tag image again when updating
+    image: chatgptweb/chatgpt-web # always use latest, pull the tag image again when updating
     container_name: chatgptweb
     restart: unless-stopped
     ports:
@@ -349,13 +359,31 @@ Please read the [Contributing Guidelines](./CONTRIBUTING.en.md) before contribut
 
 Thanks to all the contributors!
 
-<a href="https://github.com/Chanzhaoyu/chatgpt-web/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Chanzhaoyu/chatgpt-web" />
+<a href="https://github.com/chatgpt-web-dev/chatgpt-web/graphs/contributors">
+  <img alt="Contributors Image" src="https://contrib.rocks/image?repo=chatgpt-web-dev/chatgpt-web" width="550" />
 </a>
+
+## Star History
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=chatgpt-web-dev/chatgpt-web&type=Date&theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=chatgpt-web-dev/chatgpt-web&type=Date" />
+  <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=chatgpt-web-dev/chatgpt-web&type=Date" width="550" />
+</picture>
 
 ## Sponsorship
 
 If you find this project helpful, please give me a star.
 
+---
+
+Thanks to [DigitalOcean](https://www.digitalocean.com/) for sponsoring providing open-source credits used to run our infrastructure servers.
+
+<p>
+  <a href="https://www.digitalocean.com/">
+    <img alt="digitalocean" src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="201px">
+  </a>
+</p>
+
 ## License
-MIT © [Kerwin1202](./license)
+[MIT © github.com/chatgpt-web-dev Contributors](./LICENSE)

@@ -1,13 +1,18 @@
 # ChatGPT Web
 
-<div style="font-size: 1.5rem;">
-  <a href="./README.md">中文</a> |
-  <a href="./README.en.md">English</a>
-</div>
-</br>
+[中文](./README.md) | [English](./README.en.md)
+
 
 ## 说明
-> **此项目 Fork 自 [Chanzhaoyu/chatgpt-web](https://github.com/Chanzhaoyu/chatgpt-web), 新增了部分特色功能:**
+
+> [!IMPORTANT]
+> **此项目 Fork 自 [Chanzhaoyu/chatgpt-web](https://github.com/Chanzhaoyu/chatgpt-web)**
+> 
+> 由于原项目作者不愿意引入对数据库的依赖 故制作该永久分叉独立开发 [详见讨论](https://github.com/Chanzhaoyu/chatgpt-web/pull/589#issuecomment-1469207694)
+> 
+> 再次感谢 [Chanzhaoyu](https://github.com/Chanzhaoyu) 大佬对开源的贡献 🙏
+
+新增了部分特色功能:
 
 [✓] 注册 & 登录 & 重置密码 & 2FA
 
@@ -24,10 +29,12 @@
 [✓] 多 Key 随机
 
 [✓] 对话数量限制 & 设置不同用户对话数量 & 兑换数量
-</br>
+
+
+> [!CAUTION]
+> 声明：此项目只发布于 Github，基于 MIT 协议，免费且作为开源学习使用。并且不会有任何形式的卖号、付费服务、讨论群、讨论组等行为。谨防受骗。
 
 ## 截图
-> 声明：此项目只发布于 Github，基于 MIT 协议，免费且作为开源学习使用。并且不会有任何形式的卖号、付费服务、讨论群、讨论组等行为。谨防受骗。
 
 ![cover3](./docs/login.jpg)
 ![cover](./docs/c1.png)
@@ -219,13 +226,16 @@ pnpm dev
 #### Docker build & Run
 
 ```bash
-docker build -t chatgpt-web .
+GIT_COMMIT_HASH=`git rev-parse HEAD`
+RELEASE_VERSION=`git branch --show-current`
+docker build --build-arg GIT_COMMIT_HASH=${GIT_COMMIT_HASH} --build-arg RELEASE_VERSION=${RELEASE_VERSION} -t chatgpt-web .
 
 # 前台运行
-docker run --name chatgpt-web --rm -it -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
+# 如果在宿主机运行 mongodb 则使用 MONGODB_URL=mongodb://host.docker.internal:27017/chatgpt
+docker run --name chatgpt-web --rm -it -p 3002:3002 --env OPENAI_API_KEY=your_api_key --env MONGODB_URL=your_mongodb_url chatgpt-web
 
 # 后台运行
-docker run --name chatgpt-web -d -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
+docker run --name chatgpt-web -d -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key --env MONGODB_URL=your_mongodb_url chatgpt-web
 
 # 运行地址
 http://localhost:3002/
@@ -233,14 +243,14 @@ http://localhost:3002/
 
 #### Docker compose
 
-[Hub 地址](https://hub.docker.com/repository/docker/kerwin1202/chatgpt-web/general)
+[Hub 地址](https://hub.docker.com/r/chatgptweb/chatgpt-web)
 
 ```yml
 version: '3'
 
 services:
   app:
-    image: kerwin1202/chatgpt-web # 总是使用latest,更新时重新pull该tag镜像即可
+    image: chatgptweb/chatgpt-web # 总是使用latest,更新时重新pull该tag镜像即可
     container_name: chatgptweb
     restart: unless-stopped
     ports:
@@ -362,9 +372,17 @@ A: 一种可能原因是经过 Nginx 反向代理，开启了 buffer，则 Nginx
 
 感谢所有做过贡献的人!
 
-<a href="https://github.com/Chanzhaoyu/chatgpt-web/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Chanzhaoyu/chatgpt-web" />
+<a href="https://github.com/chatgpt-web-dev/chatgpt-web/graphs/contributors">
+  <img alt="Contributors Image" src="https://contrib.rocks/image?repo=chatgpt-web-dev/chatgpt-web" width="550" />
 </a>
+
+## Star 历史
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=chatgpt-web-dev/chatgpt-web&type=Date&theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=chatgpt-web-dev/chatgpt-web&type=Date" />
+  <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=chatgpt-web-dev/chatgpt-web&type=Date" width="550" />
+</picture>
 
 ## 赞助
 如果你觉得这个项目对你有帮助，请给我点个Star。并且情况允许的话，可以给我一点点支持，总之非常感谢支持～
@@ -380,5 +398,15 @@ A: 一种可能原因是经过 Nginx 反向代理，开启了 buffer，则 Nginx
 	</div>
 </div>
 
+---
+
+感谢 [DigitalOcean](https://www.digitalocean.com/) 赞助提供开源积分用于运行基础设施服务器
+
+<p>
+  <a href="https://www.digitalocean.com/">
+    <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="201px" alt="digitalocean">
+  </a>
+</p>
+
 ## License
-MIT © [Kerwin1202](./license)
+[MIT © github.com/chatgpt-web-dev Contributors](./LICENSE)
