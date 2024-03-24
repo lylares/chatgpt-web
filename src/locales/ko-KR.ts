@@ -80,6 +80,10 @@ export default {
     disable2FAConfirm: 'Are you sure to disable 2FA for this user?',
   },
   setting: {
+    announceConfig: '网站公告',
+    announceEnabled: 'Open Announcement',
+    announceWords: 'Announcement Content',
+    globalAmount: 'Global Usage Amount for New User',
     limit_switch: '오픈 횟수 제한',
     redeemCardNo: '질문 허용 횟수',
     useAmount: '질문 허용 횟수',

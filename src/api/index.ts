@@ -1,8 +1,14 @@
 import type { AxiosProgressEvent, GenericAbortSignal } from 'axios'
 import { get, post } from '@/utils/request'
-import type { AuditConfig, ConfigState, KeyConfig, MailConfig, SiteConfig, Status, UserInfo, UserPassword } from '@/components/common/Setting/model'
+import type { AnnounceConfig, AuditConfig, ConfigState, KeyConfig, MailConfig, SiteConfig, Status, UserInfo, UserPassword } from '@/components/common/Setting/model'
 import { useAuthStore, useUserStore } from '@/store'
 import type { SettingsState } from '@/store/modules/user/helper'
+
+export function fetchAnnouncement<T = any>() {
+  return post<T>({
+    url: '/announcement',
+  })
+}
 
 export function fetchChatConfig<T = any>() {
   return post<T>({
@@ -16,6 +22,7 @@ export function fetchChatAPIProcess<T = any>(
     uuid: number
     regenerate?: boolean
     prompt: string
+    uploadFileKeys?: string[]
     options?: { conversationId?: string; parentMessageId?: string }
     signal?: GenericAbortSignal
     onDownloadProgress?: (progressEvent: AxiosProgressEvent) => void },
@@ -28,6 +35,7 @@ export function fetchChatAPIProcess<T = any>(
     uuid: params.uuid,
     regenerate: params.regenerate || false,
     prompt: params.prompt,
+    uploadFileKeys: params.uploadFileKeys,
     options: params.options,
   }
 
@@ -86,6 +94,13 @@ export function fetchLogin<T = any>(username: string, password: string, token?: 
   return post<T>({
     url: '/user-login',
     data: { username, password, token },
+  })
+}
+
+export function fetchLogout<T = any>() {
+  return post<T>({
+    url: '/user-logout',
+    data: { },
   })
 }
 
@@ -301,6 +316,13 @@ export function fetchTestAudit<T = any>(text: string, audit: AuditConfig) {
   return post<T>({
     url: '/audit-test',
     data: { audit, text },
+  })
+}
+
+export function fetchUpdateAnnounce<T = any>(announce: AnnounceConfig) {
+  return post<T>({
+    url: '/setting-announce',
+    data: announce,
   })
 }
 
